@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tejeshwar Ampabathina — Learn. Explore. Collaborate. Build.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1B1E27;
+    --bg-panel:#20242F;
+    --paper:#F3ECDD;
+    --ink:#EDE6D6;
+    --ink-dim:#AFA99B;
+    --ink-dark:#2A2620;
+    --amber:#E8A33D;
+    --amber-deep:#C97D1F;
+    --teal:#6E9C89;
+    --rule:rgba(237,230,214,0.14);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:600; margin:0; letter-spacing:-0.01em;}
+  section{padding:96px 0;}
+  @media(max-width:720px){ section{padding:64px 0;} }
+
+  header{position:sticky; top:0; z-index:40; background:rgba(27,30,39,0.86); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:var(--maxw); margin:0 auto;}
+  .nav-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;}
+  .nav-name span{color:var(--amber);}
+  .nav-links{display:flex; gap:32px; list-style:none; margin:0; padding:0;}
+  .nav-links a{text-decoration:none; color:var(--ink-dim); font-size:0.95rem; transition:color .2s ease;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--amber);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--rule); color:var(--ink); border-radius:6px; padding:8px 12px; font-size:0.9rem; cursor:pointer;}
+  @media(max-width:680px){
+    .nav-links{position:absolute; top:100%; left:0; right:0; background:var(--bg-panel); flex-direction:column; gap:0; border-bottom:1px solid var(--rule); max-height:0; overflow:hidden; transition:max-height .25s ease;}
+    .nav-links.open{max-height:280px;}
+    .nav-links li{border-top:1px solid var(--rule);}
+    .nav-links a{display:block; padding:16px 28px;}
+    .nav-toggle{display:block;}
+  }
+  a:focus-visible, button:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+
+  .hero{padding-top:88px; padding-bottom:80px;}
+  .hero .wrap{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+  @media(max-width:860px){ .hero .wrap{grid-template-columns:1fr;} .hero{padding-top:56px;} }
+  .eyebrow-role{color:var(--teal); font-size:0.98rem; margin-bottom:18px;}
+  .hero h1{font-size:clamp(2.6rem, 5.4vw, 4.1rem); line-height:1.04;}
+  .hero h1 em{font-style:italic; color:var(--amber); font-weight:500;}
+  .hero p.lede{color:var(--ink-dim); font-size:1.12rem; max-width:46ch; margin:26px 0 34px;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:8px; font-size:0.98rem; font-weight:600; text-decoration:none; cursor:pointer; border:1px solid transparent; transition:transform .15s ease, background .2s ease, border-color .2s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--amber); color:#241B0C;}
+  .btn-primary:hover{background:var(--amber-deep);}
+  .btn-ghost{border-color:var(--rule); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--amber); color:var(--amber);}
+
+  .desk{position:relative;}
+  .desk svg{width:100%; height:auto;}
+  .glow{animation:pulse 4.5s ease-in-out infinite;}
+  @keyframes pulse{ 0%,100%{opacity:0.55;} 50%{opacity:1;} }
+  .typeline{ font-family:'Inter',sans-serif; font-size:0.82rem; fill:var(--teal); }
+
+  .section-head{max-width:62ch; margin-bottom:44px;}
+  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem);}
+  .section-head p{color:var(--ink-dim); margin-top:12px; font-size:1.02rem;}
+
+  #about .wrap{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start;}
+  @media(max-width:800px){ #about .wrap{grid-template-columns:1fr;} }
+  .about-text p{color:var(--ink-dim); margin:0 0 18px; max-width:58ch;}
+  .fact-list{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule);}
+  .fact-list li{display:flex; justify-content:space-between; gap:16px; padding:16px 0; border-bottom:1px solid var(--rule); font-size:0.96rem;}
+  .fact-list .k{color:var(--ink-dim);}
+  .fact-list .v{text-align:right; font-weight:500;}
+
+  /* approach */
+  .approach-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:28px; counter-reset:approach;}
+  .approach-card{background:var(--bg-panel); border:1px solid var(--rule); border-radius:10px; padding:28px; position:relative;}
+  .approach-card .step{color:var(--amber); font-family:'Fraunces',serif; font-size:1.6rem; font-style:italic; margin-bottom:14px; display:block;}
+  .approach-card h3{font-size:1.05rem; margin-bottom:10px;}
+  .approach-card p{color:var(--ink-dim); font-size:0.92rem; margin:0;}
+
+  /* hackathon note */
+  .board{background:var(--bg-panel); border:1px solid var(--rule); border-radius:14px; padding:44px; display:flex; justify-content:center;}
+  .note{
+    background:var(--paper); color:var(--ink-dark); border-radius:2px; max-width:440px; width:100%;
+    padding:28px 26px 24px; box-shadow:0 10px 24px rgba(0,0,0,0.28); position:relative; transform:rotate(-1deg);
+  }
+  .note .pin{position:absolute; top:-10px; left:50%; transform:translateX(-50%); width:16px; height:16px; border-radius:50%; background:var(--amber); box-shadow:0 3px 6px rgba(0,0,0,0.4);}
+  .note h3{font-size:1.2rem; margin-bottom:4px;}
+  .note .role{color:var(--amber-deep); font-size:0.85rem; font-weight:600; margin-bottom:14px;}
+  .note p{margin:0 0 16px; font-size:0.95rem; color:#4A4436;}
+  .note .tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .note .tags span{font-size:0.78rem; background:rgba(42,38,32,0.08); padding:4px 9px; border-radius:5px;}
+
+  /* interests */
+  .chip-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{background:rgba(232,163,61,0.08); border:1px solid rgba(232,163,61,0.28); color:var(--ink); font-size:0.92rem; padding:9px 16px; border-radius:6px;}
+
+  /* goal */
+  .goal-quote{border-left:3px solid var(--amber); padding-left:24px; max-width:70ch;}
+  .goal-quote p{font-family:'Fraunces',serif; font-style:italic; font-size:1.35rem; color:var(--ink); line-height:1.5; margin:0;}
+
+  footer{border-top:1px solid var(--rule); padding:80px 0 40px;}
+  .contact-inner{max-width:640px;}
+  .contact-inner h2{font-size:clamp(1.8rem,4vw,2.5rem); margin-bottom:16px;}
+  .contact-inner p{color:var(--ink-dim); margin-bottom:34px; max-width:50ch;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:40px;}
+  .contact-links a{display:flex; align-items:center; gap:10px; border:1px solid var(--rule); border-radius:8px; padding:12px 18px; text-decoration:none; font-size:0.95rem; transition:border-color .2s ease, color .2s ease;}
+  .contact-links a:hover{border-color:var(--amber); color:var(--amber);}
+  .contact-links svg{width:18px; height:18px; stroke:currentColor;}
+  .contact-facts{list-style:none; margin:0 0 56px; padding:0; border-top:1px solid var(--rule); max-width:480px;}
+  .contact-facts li{display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--rule); font-size:0.92rem;}
+  .contact-facts .k{color:var(--ink-dim);}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--ink-dim); font-size:0.85rem; border-top:1px solid var(--rule); padding-top:24px;}
+  .foot-bottom .mark{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-name">Tejeshwar <span>A.</span></div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#hackathons">Hackathons</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow-role">Computer Science &amp; Business Systems Student · Hackathon Participant</div>
+      <h1>Learn. Explore.<br>Collaborate.<br><em>Build.</em></h1>
+      <p class="lede">I'm Tejeshwar Ampabathina, a second-year CSBS student who's passionate about learning technology, exploring new ideas, and turning them into practical solutions through teamwork.</p>
+      <div class="hero-ctas">
+        <a href="#hackathons" class="btn btn-primary">My hackathon experience</a>
+        <a href="#contact" class="btn btn-ghost">Let's connect</a>
+      </div>
+    </div>
+    <div class="desk">
+      <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a desk lamp lighting a laptop at night">
+        <defs>
+          <radialGradient id="lampGlow" cx="50%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#E8A33D" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#E8A33D" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle class="glow" cx="260" cy="150" r="170" fill="url(#lampGlow)"/>
+        <rect x="30" y="320" width="420" height="14" rx="3" fill="#2B2F3B"/>
+        <rect x="90" y="310" width="10" height="14" fill="#3A3F4C"/>
+        <path d="M95 90 L60 240 L200 260 Z" fill="#2E323F" stroke="#E8A33D" stroke-opacity="0.4"/>
+        <circle cx="95" cy="86" r="8" fill="#E8A33D"/>
+        <line x1="95" y1="94" x2="95" y2="180" stroke="#3A3F4C" stroke-width="6"/>
+        <line x1="95" y1="180" x2="95" y2="300" stroke="#3A3F4C" stroke-width="6"/>
+        <g>
+          <rect x="190" y="250" width="150" height="10" rx="2" fill="#3A3F4C"/>
+          <path d="M195 250 L205 190 L325 190 L335 250 Z" fill="#171A22" stroke="#3A3F4C"/>
+          <rect x="215" y="200" width="100" height="42" rx="2" fill="#0F1116"/>
+          <text x="222" y="216" class="typeline" font-family="Inter, sans-serif">
+            <tspan x="222" dy="0">&gt; learning something new...</tspan>
+            <tspan x="222" dy="14">&gt; status: exploring ✓</tspan>
+          </text>
+        </g>
+        <g transform="translate(360,255)">
+          <rect x="0" y="40" width="34" height="30" rx="4" fill="#3A3F4C"/>
+          <path d="M17 40 C10 20 4 12 -2 4 M17 40 C18 18 22 8 30 -2 M17 40 C24 24 30 18 38 12" stroke="#6E9C89" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(150,262)">
+          <rect x="0" y="0" width="26" height="22" rx="3" fill="#E8A33D" opacity="0.85"/>
+          <path d="M26 4 h8 a6 6 0 0 1 0 12 h-8" stroke="#E8A33D" stroke-width="3" fill="none" opacity="0.85"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-text">
+      <div class="section-head" style="margin-bottom:24px;"><h2>About</h2></div>
+      <p>I'm interested in technology, problem-solving, and learning new concepts in computer science. I enjoy working with others, exploring ideas, and gaining practical experience through technical events and hackathons.</p>
+      <p>My participation in Freshathon gave me the chance to experience teamwork, idea development, problem-solving, and presenting solutions in a competitive environment. I'm continuously learning and looking forward to improving my technical skills and building meaningful projects.</p>
+    </div>
+    <ul class="fact-list">
+      <li><span class="k">Studying</span><span class="v">Computer Science &amp; Business Systems</span></li>
+      <li><span class="k">Institution</span><span class="v">Rajalakshmi Institute of Technology</span></li>
+      <li><span class="k">Year</span><span class="v">Second-year student</span></li>
+      <li><span class="k">Interests</span><span class="v">Tech · Problem Solving · Collaboration</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>My approach</h2>
+      <p>Four things I keep coming back to, in roughly this order.</p>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <span class="step">01</span>
+        <h3>Learn</h3>
+        <p>I believe in continuously learning new concepts and technologies.</p>
+      </div>
+      <div class="approach-card">
+        <span class="step">02</span>
+        <h3>Explore</h3>
+        <p>I enjoy exploring ideas and understanding how technology can solve real-world problems.</p>
+      </div>
+      <div class="approach-card">
+        <span class="step">03</span>
+        <h3>Collaborate</h3>
+        <p>I value teamwork and believe good collaboration leads to better solutions.</p>
+      </div>
+      <div class="approach-card">
+        <span class="step">04</span>
+        <h3>Build</h3>
+        <p>I want to turn ideas and knowledge into practical projects and solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hackathons">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Hackathon experience</h2>
+      <p>Why hackathons? They're learning through practical experience — working with a team, understanding real-world problems, and turning ideas into solutions within a limited time.</p>
+    </div>
+    <div class="board">
+      <div class="note">
+        <div class="pin"></div>
+        <h3>Freshathon</h3>
+        <div class="role">Participant</div>
+        <p>Gained practical exposure to teamwork, idea development, problem-solving, and presenting solutions in a competitive environment.</p>
+        <div class="tags"><span>Team Collaboration</span><span>Problem Solving</span><span>Idea Development</span><span>Innovation</span><span>Presentation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="interests">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:28px;">
+      <h2>Areas of interest</h2>
+    </div>
+    <div class="chip-row">
+      <span class="chip">Technology</span>
+      <span class="chip">Computer Science</span>
+      <span class="chip">Problem Solving</span>
+      <span class="chip">Innovation</span>
+      <span class="chip">Team Collaboration</span>
+      <span class="chip">Learning New Technologies</span>
+    </div>
+  </div>
+</section>
+
+<section id="goal">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:28px;"><h2>Career goal</h2></div>
+    <div class="goal-quote">
+      <p>To develop strong technical skills and become a skilled technology professional who can build practical solutions, solve real-world problems, and contribute effectively to innovative projects.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <h2>Let's connect</h2>
+      <p>I'm always interested in learning, collaborating, and exploring new opportunities in technology.</p>
+      <div class="contact-links">
+        <a href="mailto:tejeshwarampabathina@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>tejeshwarampabathina@gmail.com</a>
+      </div>
+      <ul class="contact-facts">
+        <li><span class="k">College</span><span class="v">Rajalakshmi Institute of Technology</span></li>
+        <li><span class="k">Department</span><span class="v">Computer Science and Business Systems (CSBS)</span></li>
+        <li><span class="k">Year</span><span class="v">Second Year</span></li>
+      </ul>
+      <div class="foot-bottom">
+        <span class="mark">Tejeshwar Ampabathina</span>
+        <span>Learn. Explore. Collaborate. Build.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
